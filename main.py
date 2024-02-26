@@ -9,7 +9,7 @@ def read_config():
 
 
 def get_openai_token():
-    if os.environ['OPENAI_API_KEY']:
+    if os.getenv('OPENAI_API_KEY'):
         print('Using OpenAI token from environment variable')
         return os.environ['OPENAI_API_KEY']
     
@@ -19,7 +19,7 @@ def get_openai_token():
 
 
 def init_openai() -> OpenAI:
-    token = get_openai_token
+    token = get_openai_token()
     if token == "" or token is None:
         raise ValueError("OpenAI token is required")
     return OpenAI(api_key=token)
